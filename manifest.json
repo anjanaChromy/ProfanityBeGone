@@ -3,4 +3,7 @@
     "version": "0.0.0.1",
     "manifest_version": 2,
     "description": "A Edge browser plugin that works like a ad blocker and removes inappropriate content from webpages you or your child is looking at."
+        "icons": {
+        "128": "icons/pbg.png"
+    },
 }
