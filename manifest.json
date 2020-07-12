@@ -6,4 +6,7 @@
         "icons": {
         "128": "icons/pbg.png"
     },
+    "browser_action": {
+        "default_popup": "popup/popup.html"
+    }
 }
