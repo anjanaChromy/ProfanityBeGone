@@ -5,17 +5,28 @@
     "author": "Anjana Chromy",
     "description": "A Edge browser plugin that works like a ad blocker and removes inappropriate content from webpages you or your child is looking at.",
     "icons": {
-      "16": "icons/pbg_icon_16x16.png",
-      "32": "icons/pbg_icon_32x32.png",
-      "48": "icons/pbg_icon_48x48.png",
-      "128": "icons/pbg_icon_128x128.png"
-    },
+        "16": "icons/pbg_icon_16x16.png",
+        "32": "icons/pbg_icon_32x32.png",
+        "48": "icons/pbg_icon_48x48.png",
+        "128": "icons/pbg_icon_128x128.png"
+      },
     "permissions": [
         "*://docs.microsoft.com/*",
         "tabs"
-      ],    
+      ], 
     "browser_action": {
         "default_title": "Profanity Be Gone",
-        "default_popup": "popup.html"
+        "default_popup": "popup/popup.html"
+    },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": ["lib/jquery.min.js","content-scripts/content.js"]
     }
+  ],
+  "web_accessible_resources": [
+    "images/*.jpeg"
+  ]
 }
