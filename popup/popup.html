@@ -1,23 +1,149 @@
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <style>
-            body {
-                width: 500px;
-            }
-            button {
-                background-color: #336dab;
-                border: none;
-                color: white;
-                padding: 15px 32px;
-                text-align: center;
-                font-size: 16px;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>ProfanityBeGone</h1>
-        <button id="sendmessageid">Replace Profanity</button>
-        <script src="popup.js"></script>
-    </body>
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        button {
+            background-color: green;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* The switch - the box around the slider */
+        .switch {
+            position: relative;
+            float: right;
+            width: 30px;
+            height: 15px;
+            vertical-align: top;
+            margin-left: 5px;
+            margin-right: 20px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: red;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 9px;
+            width: 9px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: green;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px green;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(15px);
+            -ms-transform: translateX(15px);
+            transform: translateX(15px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 14px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .contentText {
+            display: inline-block;
+            vertical-align: top;
+            font-weight: bold;
+            padding-left: 35px;
+        }
+
+        .contentIcon,
+        .contentHeader {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .contentHeader h1 {
+            margin: 5px 0;
+            line-height: 18px;
+        }
+
+        .contentIcon {
+            padding-left: 5px;
+        }
+
+        .content {
+            width: 250px;
+        }
+
+        .infoContent {
+            background-color: #e4e4e4;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <!-- <button id="sendmessageid">Replace Profanity</button> -->
+        
+    <div class="content">
+        <div class="infoHead">
+            <span class="contentIcon">
+                <img src="../icons/pbg_icon_32x32.png" alt="ProfanityBeGone Icon">
+            </span>
+            <h1 class="contentHeader">ProfanityBeGone</h1>
+        </div>
+        <div class="infoContent">
+            <label class="contentText">Filter Obscene Content</label>
+            <label class="switch">
+                <input type="checkbox" id="obsceneText">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <!-- <div class="infoContent">
+            <label class="contentText">Filter Obscene Image</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div> -->
+    </div>
+    <script src="popup.js"></script>
+</body>
+
 </html>
