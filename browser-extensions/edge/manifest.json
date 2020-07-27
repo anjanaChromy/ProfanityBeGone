@@ -12,7 +12,8 @@
       },
     "permissions": [
         "*://docs.microsoft.com/*",
-        "tabs"
+        "tabs",
+        "activeTab"
       ], 
     "browser_action": {
         "default_title": "Profanity Be Gone",

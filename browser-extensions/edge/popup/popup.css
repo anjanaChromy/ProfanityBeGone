@@ -108,3 +108,10 @@ input:checked+.slider:before {
     background-color: #e4e4e4;
     padding: 8px;
 }
+
+.reportButton {
+    width: 230px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+}

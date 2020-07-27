@@ -21,3 +21,17 @@ if (sendMessageId) {
     });
   };
 }
+
+const reportButtonId = document.querySelector("#reportButton");
+if (reportButtonId) {
+  reportButtonId.onclick = function () {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      chrome.tabs.executeScript(tabs[0].id, {
+        code: "window.getSelection().toString();"
+      }, function (selection) {
+        alert(selection);
+      });
+    });
+  }
+}
+
