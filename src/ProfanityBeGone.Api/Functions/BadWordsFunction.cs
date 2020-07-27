@@ -15,14 +15,16 @@ namespace ProfanityBeGone.Api.Functions
         private const string ContentBlobName = "english.json";
 
         private readonly IContentBlobRepository _contentBlobRepository;
+        private readonly ILogger<BadWordsFunction> _logger;
 
-        public BadWordsFunction(IContentBlobRepository contentBlobRepository)
+        public BadWordsFunction(IContentBlobRepository contentBlobRepository, ILogger<BadWordsFunction> logger)
         {
             _contentBlobRepository = contentBlobRepository ?? throw new ArgumentNullException(nameof(contentBlobRepository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [FunctionName("bad-words")]
-        public async Task<IActionResult> RunAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req, ILogger log)
+        public async Task<IActionResult> RunAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req)
         {
             IActionResult result;
 
