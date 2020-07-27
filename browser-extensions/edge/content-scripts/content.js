@@ -1,21 +1,33 @@
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+function profanityBegone() {
+    var bodyElements = [...document.body.getElementsByTagName('*')];
 
-var elements = document.getElementsByTagName('*');
-
-for (var i = 0; i < elements.length; i++) {
-    var element = elements[i];
-
-    for (var j = 0; j < element.childNodes.length; j++) {
-        var node = element.childNodes[j];
-
-        if (node.nodeType === 3) {
-            var text = node.nodeValue;
-            var replacedText = text.replace(/documentation/gi, '[ProfanityBeGone]');
-
-            if (replacedText !== text) {
-                element.replaceChild(document.createTextNode(replacedText), node);
-            }
+    chrome.runtime.sendMessage(
+        { contentScriptQuery: "badWords" },
+        badWords => {
+            badWords.sort((a, b) => b.length - a.length)
+            bodyElements.forEach(element => {
+                element.childNodes.forEach(child => {
+                    if (child.nodeType === Node.TEXT_NODE) {
+                        replaceText(child, badWords);
+                    }
+                });
+            });
         }
-    }
+    );
 }
-});
+
+function replaceText(node, badWords) {
+    let value = node.nodeValue;
+    badWords.forEach(w => {
+            var regex = new RegExp('\\b' + w + '\\b', 'gi');
+            value = value.replace(regex, '*'.repeat(w.length));
+        });
+    node.nodeValue = value;
+}
+
+
+chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse) {
+        profanityBegone();
+    }
+);

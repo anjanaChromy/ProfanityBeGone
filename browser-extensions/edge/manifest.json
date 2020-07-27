@@ -12,6 +12,7 @@
       },
     "permissions": [
         "*://docs.microsoft.com/*",
+        "*://hackathon2020-wus2.azurewebsites.net/*",
         "tabs",
         "activeTab"
       ], 
@@ -19,6 +20,9 @@
         "default_title": "Profanity Be Gone",
         "default_popup": "popup/popup.html"
     },
+  "background": {
+    "scripts": ["background/background.js"]
+  },
   "content_scripts": [
     {
       "matches": [
