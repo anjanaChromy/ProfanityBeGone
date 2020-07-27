@@ -29,7 +29,7 @@ if (reportButtonId) {
       chrome.tabs.executeScript(tabs[0].id, {
         code: "window.getSelection().toString();"
       }, function (selection) {
-        alert(selection);
+        alert("Request has been sent for Review");
       });
     });
   }
