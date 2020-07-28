@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 
 <head>
     <meta charset="utf-8" />
@@ -27,8 +27,16 @@
         <div class="infoContent">
             <button type="button" id="reportButton" class="reportButton">Report Now</button>
         </div>
+
+        <div class="infoContent">
+            <label class="contentText">Profanity Filter</label>
+            <p id="badWordsLastUpdated">Last Updated: never</p>
+            <button id="updateFilterButton">Force Update</button>
+        </div>
     </div>
-    <script src="popup.js"></script>
+<script src="../js/lib/jquery.min.js"></script>
+<script src="../js/common.js"></script>
+<script src="popup.js"></script>
 </body>
 
 </html>
