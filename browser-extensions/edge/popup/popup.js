@@ -1,7 +1,8 @@
 updateBadWordsIfNone();
 
-const sendMessageId = document.querySelector("#obsceneText");
+const sendMessageId = document.querySelector("#filterButton");
 if (sendMessageId) {
+  console.log("hi");
     sendMessageId.onclick = function () {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             chrome.tabs.sendMessage(
@@ -11,7 +12,7 @@ if (sendMessageId) {
                 },
                 function (response) {
                     console.log("message with url sent");
-                    //window.close();
+                    window.close();
                 }
             );
             function guidGenerator() {
