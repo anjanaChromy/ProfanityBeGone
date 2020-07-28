@@ -16,27 +16,30 @@
             </span>
             <h1 class="contentHeader">ProfanityBeGone</h1>
         </div>
-        <div class="infoContent">
+        <!-- <div class="infoContent">
             <label class="contentText">Filter Obscene Content</label>
             <label class="switch">
                 <input type="checkbox" id="obsceneText">
                 <span class="slider round"></span>
             </label>
-        </div>
-
+        </div> -->
         <div class="infoContent">
-            <button type="button" id="reportButton" class="reportButton">Report Now</button>
+            <button type="button" id="filterButton" class="extButton" title="Filter Obscene Content">Filter</button>
         </div>
-
         <div class="infoContent">
-            <label class="contentText">Profanity Filter</label>
-            <p id="badWordsLastUpdated">Last Updated: never</p>
-            <button id="updateFilterButton">Force Update</button>
+            <button type="button" id="reportButton" class="extButton" title="Report a new word to be filtered out">Report Now</button>
+        </div>
+        <div class="infoContent">
+            <button type="button" id="updateFilterButton" class="extButton" title="Force update latest Obscene reference data">Force Update</button>
+        </div>
+        <div class="status">
+            <!-- <label class="contentText">Profanity Filter</label> -->
+            <p id="badWordsLastUpdated" class="updateStatus">Filter Last Updated: Never</p>
         </div>
     </div>
-<script src="../js/lib/jquery.min.js"></script>
-<script src="../js/common.js"></script>
-<script src="popup.js"></script>
+    <script src="../js/lib/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="popup.js"></script>
 </body>
 
 </html>
