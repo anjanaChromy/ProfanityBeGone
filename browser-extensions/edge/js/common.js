@@ -29,17 +29,3 @@ function updateBadWordsIfNone() {
         }
     });
 }
-
-//function getBadWords() {
-//    chrome.storage.local.get(['BadWords'], function (result) {
-//        var items = [];
-
-//        $.each(result.BadWords.Content, function (idx, val) {
-//            items.push(JSON.stringify(val.Value));
-//        });
-
-//        $('#BadWordsLastUpdated').append('<p>' + items.length + '</p>');
-
-//        return items;
-//    });
-//}

@@ -1,17 +1,18 @@
 chrome.runtime.onMessage.addListener(
 	function (request, sender, sendResponse) {
-		if (request.type == "getBadWords") {
-			const url = "https://hackathon2020-wus2.azurewebsites.net/api/bad-words"
-			fetch(url)
-				.then(response => response.text())
-				.then(text => parseBadWords(text))
-				.then(badWords => sendResponse(badWords))
-				.catch(error => console.error(error))
-			return true;
-		}
-		else if (request.type == "sendTextReport") {
+        if (request.type == "getBadWords") {
+            getBadWords()
+                .then(function (response) {
+                    var text = JSON.stringify(response);
+                    var badWords = parseBadWords(text);
+                    sendResponse(badWords);
+                })
+                .catch(error => console.error(error));
 
-			var uuid = CreateUUID();
+            return true;
+        }
+		else if (request.type == "sendTextReport") {
+            var uuid = CreateUUID();
 			const reportUrl = `https://westus2.api.cognitive.microsoft.com/contentmoderator/review/v1.0/teams/hackathon2020wus2/jobs?ContentType=Text&ContentId=${uuid}&WorkflowName=hackathontext`
 			fetch(reportUrl, {
 				method: "POST",
@@ -35,9 +36,16 @@ function CreateUUID() {
 }
 
 function parseBadWords(text) {
-	doc = JSON.parse(text);
-	return doc.Content.map(function (item) {
-		return item.Value;
-	});
+    doc = JSON.parse(text);
+    return doc.Content.map(function (item) {
+        return item.Value;
+    });
 }
 
+function getBadWords() {
+    return new Promise(resolve => {
+        chrome.storage.local.get(['BadWords'], function (result) {
+            resolve(result.BadWords);
+        });
+    });
+}
