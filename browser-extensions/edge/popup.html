@@ -1,8 +1,8 @@
-<html>
+﻿<html>
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="css/popup.css">
 </head>
 
 <body>
@@ -12,10 +12,11 @@
     <div class="content">
         <div class="infoHead">
             <span class="contentIcon">
-                <img src="../icons/pbg_icon_32x32.png" alt="ProfanityBeGone Icon">
+                <img src="icons/pbg_icon_32x32.png" alt="ProfanityBeGone Icon">
             </span>
             <h1 class="contentHeader">ProfanityBeGone</h1>
         </div>
+
         <div class="infoContent">
             <label class="contentText">Filter Obscene Content</label>
             <label class="switch">
@@ -25,10 +26,15 @@
         </div>
 
         <div class="infoContent">
-            <button type="button" id="reportButton" class="reportButton">Report New</button>
+            <label class="contentText">Profanity Filter</label>
+            <p id="badWordsLastUpdated">Last Updated: never</p>
+            <button id="updateFilterButton">Force Update</button>
         </div>
     </div>
-    <script src="popup.js"></script>
+
+    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/popup.js"></script>
 </body>
 
 </html>
