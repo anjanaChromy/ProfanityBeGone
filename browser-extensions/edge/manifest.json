@@ -19,7 +19,7 @@
   ],
   "browser_action": {
     "default_title": "Profanity Be Gone",
-    "default_popup": "popup.html"
+    "default_popup": "popup/popup.html"
   },
   "background": {
     "scripts": [ "background/background.js" ]
