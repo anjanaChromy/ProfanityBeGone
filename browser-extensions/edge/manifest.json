@@ -13,6 +13,7 @@
   "permissions": [
     "*://docs.microsoft.com/*",
     "*://hackathon2020-wus2.azurewebsites.net/*",
+    "*://hackathon2020-wus2.cognitiveservices.azure.com/*",
     "tabs",
     "activeTab",
     "storage"

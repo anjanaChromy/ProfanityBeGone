@@ -2,7 +2,7 @@ function profanityBegone() {
     var bodyElements = [...document.body.getElementsByTagName('*')];
 
     chrome.runtime.sendMessage(
-        { contentScriptQuery: "badWords" },
+        { type: "getBadWords" },
         badWords => {
             badWords.sort((a, b) => b.length - a.length)
             bodyElements.forEach(element => {

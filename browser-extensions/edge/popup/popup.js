@@ -31,10 +31,14 @@ if (reportButtonId) {
             chrome.tabs.executeScript(tabs[0].id, {
                 code: "window.getSelection().toString();"
             }, function (selection) {
-                alert("Request has been sent for Review");
-            });
+                chrome.runtime.sendMessage(
+                    { type: "sendTextReport", text: selection },
+                    response => {
+                        alert("Request has been sent for Review");
+                    });
+                });
         });
-    }
+    };
 }
 
 $(document).ready(function () {
