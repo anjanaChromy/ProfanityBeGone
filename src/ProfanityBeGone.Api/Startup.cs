@@ -17,6 +17,7 @@ namespace ProfanityBeGone.Api
                 configuration.Bind(settings);
             });
 
+            builder.Services.AddHttpClient();
             builder.Services.AddTransient<IContentBlobRepository, ContentBlobRepository>();
         }
     }

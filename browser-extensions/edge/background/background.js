@@ -13,15 +13,14 @@ chrome.runtime.onMessage.addListener(
         }
 		else if (request.type == "sendTextReport") {
             var uuid = CreateUUID();
-			const reportUrl = `https://westus2.api.cognitive.microsoft.com/contentmoderator/review/v1.0/teams/hackathon2020wus2/jobs?ContentType=Text&ContentId=${uuid}&WorkflowName=hackathontext`
+            const reportUrl = "https://hackathon2020-wus2.azurewebsites.net/api/report-now";
 			fetch(reportUrl, {
 				method: "POST",
-				body: JSON.stringify({ContentValue: request.text}),
+				body: JSON.stringify({ContentValue: request.text.toString()}),
 				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'text/json',
-					'Ocp-Apim-Subscription-Key': 'todo:subscriptionkey_configuration'
-				}
+                    'Accept': 'application/json',
+                    'Content-Type': 'text/json'
+                }
 			})
 				.then(response => sendResponse(response))
 				.catch(error => console.error(error));
