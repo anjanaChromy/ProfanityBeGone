@@ -19,6 +19,8 @@ namespace ProfanityBeGone.Api
 
             builder.Services.AddHttpClient();
             builder.Services.AddTransient<IContentBlobRepository, ContentBlobRepository>();
+            builder.Services.AddTransient<ITextCollectionRepository, TextCollectionRepository>();
+            builder.Services.AddTransient<ITextItemRepository, TextItemRepository>();
         }
     }
 }

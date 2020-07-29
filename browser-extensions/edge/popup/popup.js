@@ -2,7 +2,7 @@ updateBadWordsIfNone();
 
 const sendMessageId = document.querySelector("#filterButton");
 if (sendMessageId) {
-  console.log("hi");
+    console.log("hi");
     sendMessageId.onclick = function () {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             chrome.tabs.sendMessage(
@@ -37,7 +37,7 @@ if (reportButtonId) {
                     response => {
                         alert("Request has been sent for Review");
                     });
-                });
+            });
         });
     };
 }

@@ -1,9 +1,3 @@
-using System;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -12,6 +6,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ProfanityBeGone.Api.Requests;
+using System;
+using System.IO;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ProfanityBeGone.Api.Functions
 {
@@ -47,19 +46,22 @@ namespace ProfanityBeGone.Api.Functions
                     var startingIndex = iteration * MaxSplitLength;
                     var textSection = textToReview.Substring(startingIndex, splitLength);
 
-                    var contentId = Guid.NewGuid().ToString();
-                    var endpoint = $"https://westus2.api.cognitive.microsoft.com/contentmoderator/review/v1.0/teams/hackathon2020wus2/jobs?ContentType={contentType}&ContentId={contentId}&WorkflowName=hackathontext";
-                    var httpClient = _httpClientFactory.CreateClient();
-
-                    var requestBody = new CreateReviewRequest()
+                    if (!string.IsNullOrWhiteSpace(textSection))
                     {
-                        ContentValue = textSection
-                    };
+                        var contentId = Guid.NewGuid().ToString();
+                        var endpoint = $"https://westus2.api.cognitive.microsoft.com/contentmoderator/review/v1.0/teams/hackathon2020wus2/jobs?ContentType={contentType}&ContentId={contentId}&WorkflowName=hackathontext";
+                        var httpClient = _httpClientFactory.CreateClient();
 
-                    var content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
-                    content.Headers.Add("Ocp-Apim-Subscription-Key", _options.Value.ContentModeratorApiKey);
+                        var requestBody = new CreateReviewRequest()
+                        {
+                            ContentValue = textSection
+                        };
 
-                    var response = await httpClient.PostAsync(endpoint, content).ConfigureAwait(false);
+                        var content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
+                        content.Headers.Add("Ocp-Apim-Subscription-Key", _options.Value.ContentModeratorApiKey);
+
+                        await httpClient.PostAsync(endpoint, content).ConfigureAwait(false);
+                    }
 
                     iteration++;
                 } while (iteration * MaxSplitLength < textToReview.Length);

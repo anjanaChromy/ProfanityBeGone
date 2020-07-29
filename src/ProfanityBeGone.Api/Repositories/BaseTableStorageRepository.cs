@@ -19,7 +19,7 @@ namespace ProfanityBeGone.Api.Repositories
 
         protected abstract string TableName { get; }
 
-        protected async Task<bool> AddAsync(T entity)
+        protected async Task<bool> InsertAsync(T entity)
         {
             entity.ShouldNotBeNull(nameof(entity));
 
@@ -36,7 +36,7 @@ namespace ProfanityBeGone.Api.Repositories
                     success = result.HttpStatusCode < 300 && result.HttpStatusCode >= 200;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -58,7 +58,7 @@ namespace ProfanityBeGone.Api.Repositories
 
                 success = result.HttpStatusCode < 300 && result.HttpStatusCode >= 200;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -104,7 +104,7 @@ namespace ProfanityBeGone.Api.Repositories
                 }
                 while (token != null);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -130,7 +130,7 @@ namespace ProfanityBeGone.Api.Repositories
                     entity = (T) result.Result;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }

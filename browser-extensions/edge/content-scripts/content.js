@@ -19,9 +19,9 @@ function profanityBegone() {
 function replaceText(node, badWords) {
     let value = node.nodeValue;
     badWords.forEach(w => {
-            var regex = new RegExp('\\b' + w + '\\b', 'gi');
-            value = value.replace(regex, '*'.repeat(w.length));
-        });
+        var regex = new RegExp('\\b' + w + '\\b', 'gi');
+        value = value.replace(regex, '*'.repeat(w.length));
+    });
     node.nodeValue = value;
 }
 

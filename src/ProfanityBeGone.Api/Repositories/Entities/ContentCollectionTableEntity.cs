@@ -1,20 +1,29 @@
 ﻿using Microsoft.Azure.Cosmos.Table;
+using ProfanityBeGone.Api.Extensions;
 
 namespace ProfanityBeGone.Api.Repositories.Entities
 {
-    public class ContentCollectionTableEntity : TableEntity
+    public abstract class ContentCollectionTableEntity : TableEntity
     {
-        public ContentCollectionTableEntity()
+        protected ContentCollectionTableEntity()
         {
         }
 
-        public ContentCollectionTableEntity(string owner, string discriminator)
+        protected ContentCollectionTableEntity(string owner, string discriminator)
         {
+            owner.ShouldNotBeNullOrWhitespace(nameof(owner));
+            discriminator.ShouldNotBeNullOrWhitespace(nameof(discriminator));
 
+            this.PartitionKey = owner;
+            this.RowKey = discriminator;
         }
 
         public string Owner => this.PartitionKey;
 
-        public string Name => this.RowKey;
+        public string Discriminator => this.RowKey;
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
     }
 }
