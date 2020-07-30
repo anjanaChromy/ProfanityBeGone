@@ -23,7 +23,7 @@ namespace ProfanityBeGone.Api.Functions
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        [FunctionName("rebuild")]
+        [FunctionName("bad-words")]
         public async Task<IActionResult> RunAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req)
         {
             IActionResult result;
